@@ -22,7 +22,9 @@ class Main extends Component {
     }
 
     componentDidMount(){
-        axios.get('./data.json')
+        axios.get('data.json')
+
+        // axios.get('./data.json')
         .then((res)=>{
             // console.log(res.data.merchants);
             const merchants = res.data.merchants;
