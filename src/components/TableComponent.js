@@ -51,18 +51,18 @@ const useStyles = makeStyles((theme) => ({
 //     },
 //   });
 
-const ReacBtn = () => {
-    return(
-        <div>
-            <Button
-                variant="contained"
-                // color="green"
-                size="large"
-                startIcon={<CheckIcon />}>Reactivate
-            </Button>
-        </div>
-    );
-}
+// const ReacBtn = () => {
+//     return(
+//         <div>
+//             <Button
+//                 variant="contained"
+//                 // color="green"
+//                 size="large"
+//                 startIcon={<CheckIcon />}>Reactivate
+//             </Button>
+//         </div>
+//     );
+// }
 
 const DeacBtn = (props) => {
 
@@ -131,18 +131,18 @@ const DeacBtn = (props) => {
 
 }
 
-const DeacBtn2 = (props) => {
+// const DeacBtn2 = (props) => {
 
-    return(
-        <Button                
-            variant="contained"
-            size="small"
-            // onClick={()=>{props.handleDeac(props.id)}}
-            startIcon={<ClearIcon />} disabled>Deactivate
-        </Button>
-    );
+//     return(
+//         <Button                
+//             variant="contained"
+//             size="small"
+//             // onClick={()=>{props.handleDeac(props.id)}}
+//             startIcon={<ClearIcon />} disabled>Deactivate
+//         </Button>
+//     );
 
-}
+// }
 
 const TableComponent = (props) => {
 
