@@ -14,7 +14,7 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
 import ClearIcon from '@material-ui/icons/Clear';
-// import { red, green } from 'material-ui/colors'
+import CheckIcon from '@material-ui/icons/Check';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         margin: theme.spacing(1),
-
     },
 
 }));
@@ -51,72 +50,105 @@ const useStyles = makeStyles((theme) => ({
 //       minWidth: 650,
 //     },
 //   });
-  
-// const useToolbarStyles = makeStyles((theme) => ({
-//     root: {
-//         paddingLeft: theme.spacing(2),
-//         paddingRight: theme.spacing(1),
-//     },
-//     highlight:
-//         theme.palette.type === 'light'
-//         ? {
-//             color: theme.palette.secondary.main,
-//             backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-//             }
-//         : {
-//             color: theme.palette.text.primary,
-//             backgroundColor: theme.palette.secondary.dark,
-//             },
-//     title: {
-//         align: 'left',
-//         backgroundColor:'blue'      
-//     },
-// }));
 
-// const EnhancedTableToolbar = () => {
-//     const classes = useToolbarStyles();
-
-//     return (
-//         <Toolbar>
-//         <Box mx={10} bgcolor="background.paper">
-//         <Typography className={classes.title} variant="h6" id="tableTitle" component="div">
-//             Merchants
-//         </Typography>
-//         </Box>
-
-//         </Toolbar>
-//     );
-// };
-
-const ReactivateBtn = () => {
+const ReacBtn = () => {
     return(
         <div>
             <Button
                 variant="contained"
-                color="green"
+                // color="green"
                 size="large"
-                startIcon={<ClearIcon />}>Reactivate
+                startIcon={<CheckIcon />}>Reactivate
             </Button>
         </div>
     );
 }
 
-const DeacBtn = () => {
-    return(
-        <div>
-            <Button>Deactivate</Button>
+const DeacBtn = (props) => {
 
-        </div>
+    //if active ang user then render deac btn else render reac btn
+    if(props.status===true){
+        //if disabled ang user then render disabled deac btn
+        if(props.enabled===true){
+            return(
+                <div>
+                    <Button                
+                        variant="contained"
+                        style={{
+                            backgroundColor: "#ff0000",
+                            color:"#FFFFFF"
+                        }}
+                        size="large"
+                        onClick={()=>{props.handleDeac(props.id)}}
+                        startIcon={<ClearIcon />} 
+                        disabled={!props.status}>Deactivate
+                    </Button>
+                </div>
+            );
+        }
+        
+        return(
+            <Button                
+                variant="contained"
+                size="large"
+                // onClick={()=>{props.handleDeac(props.id)}}
+                startIcon={<ClearIcon />} disabled>Deactivate
+            </Button>
+        );
+
+    }
+    else if(props.status===false){
+        if(props.enabled===false){
+            return(
+                <div>
+                    <Button
+                        variant="contained"
+                        size="large"
+                        startIcon={<CheckIcon />}
+                        disabled>
+                            Reactivate
+                    </Button>
+                </div>
+            );
+        }
+        return(
+            <div>
+                <Button
+                    variant="contained"
+                    style={{
+                        backgroundColor: "#008000",
+                        color:"#FFFFFF"
+                    }}
+                    size="large"
+                    startIcon={<CheckIcon />}
+                    onClick={()=>{props.handleDeac(props.id)}}
+                    >
+                        Reactivate
+                </Button>
+            </div>
+        );
+    }
+
+}
+
+const DeacBtn2 = (props) => {
+
+    return(
+        <Button                
+            variant="contained"
+            size="small"
+            // onClick={()=>{props.handleDeac(props.id)}}
+            startIcon={<ClearIcon />} disabled>Deactivate
+        </Button>
     );
+
 }
 
 const TableComponent = (props) => {
 
-    // const [page, setPage] = React.useState(0);
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(4);
     // const [rowsPerPage, setRowsPerPage] = React.useState(10);
-
 
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
@@ -134,27 +166,17 @@ const TableComponent = (props) => {
 
     };
 
-    // const handleLabelDisplayedRows = ({ from, to, count }) => {
-    //     `${from}-${to} of ${count !== -1 ? count :more than {to}}
-    // };
-
     const classes = useStyles();
     // console.log(props.merchants);
-
 
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
-                {/* <EnhancedTableToolbar/> */}
-                <AppBar position="static">
+                <AppBar position="sticky">
                     <Toolbar>
-                        {/* <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                        <MenuIcon />
-                        </IconButton> */}
                         <Typography variant="h6" className={classes.title}>
                         Merchants
                         </Typography>
-                        {/* <Button color="inherit">Login</Button> */}
                     </Toolbar>
                 </AppBar>
 
@@ -175,13 +197,16 @@ const TableComponent = (props) => {
                                                 
                         {/* {props.merchants.map((merchant) => ( */}
                         {(rowsPerPage > 0? props.merchants.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage):props.merchants).map((merchant) => (
-
+                            //add a field in the data.json for disabled and enabled
+                            //ask Ray if i persist ang data
+                            //fix pagination bug
+                            //fix seach bug
 
                             <TableRow key={merchant.id}>
                                 <TableCell align="left">{merchant.firstname}</TableCell>
                                 <TableCell align="left">{merchant.lastname}</TableCell>
                                 <TableCell align="left">{merchant.location}</TableCell>
-                                <TableCell align="left">{merchant.status?<ReactivateBtn/>:<DeacBtn/>}</TableCell>
+                                <TableCell align="left"><DeacBtn handleDeac={props.handleDeac} id={merchant.id} status={merchant.status} enabled={merchant.enabled}/></TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
@@ -196,7 +221,7 @@ const TableComponent = (props) => {
                         rowsPerPage={rowsPerPage}
                         onChangePage={handleChangePage}
                         onChangeRowsPerPage={handleChangeRowsPerPage}
-                        labelDisplayedRows={({ from, to, count }) => `of ${page}`}
+                        labelDisplayedRows={({ from, to, count }) => `of ${page+1}`}
                         labelRowsPerPage = {"Page"}
                         />
                 </Box>

@@ -11,25 +11,6 @@ import SearchIcon from '@material-ui/icons/Search';
 import Grid from "@material-ui/core/Grid";
 import Box from '@material-ui/core/Box';
 
-// const useStyles = makeStyles((theme) => ({
-//     root: {
-//       '& .MuiTextField-root': {
-//         margin: theme.spacing(1),
-//         width: '25ch',
-//       },
-//     },
-//   }));
-
-// const useStyles = makeStyles((theme) => ({
-//         margin: {
-//             margin: theme.spacing(1),
-//         },
-//         extendedIcon: {
-//             marginRight: theme.spacing(1),
-//         },
-
-// }));
-
 
 const SearchBarComponent = (props) => {
 
@@ -47,14 +28,14 @@ const SearchBarComponent = (props) => {
     const classes = useStyles();
     return (
         <div>
-            <Box mt={3} mb={3}>
-                <Grid container spacing={3}>
-                    <Grid item xl={3}>
-                        <label>Filter by</label>
+            <Box display="flex" flexDirection="row-reverse" alignItems="center"mt={3} mb={3}>
+                <Grid container spacing={1} justify="center">
+                    <Grid item xs={3}>
+                        <InputLabel>Filter by</InputLabel>
                     </Grid>
                     {/* <input type="text" id="name" name="name" placeholder="Name" onChange={props.handleChange}/> */}
                     
-                    <Grid item xl={3}>
+                    <Grid item xs={3}>
                         <TextField
                             type="text" 
                             id="name" 
@@ -64,7 +45,6 @@ const SearchBarComponent = (props) => {
                             placeholder="Name" 
                             value={props.name}
                             onChange={props.handleChange}
-                            
                         />
                     </Grid>
                     
@@ -73,7 +53,7 @@ const SearchBarComponent = (props) => {
                         <option value="inactive">Inactive</option>
                     </select> */}
 
-                    <Grid item xl={2}>
+                    <Grid item xs={3}>
                         <FormControl variant="outlined" className={classes.formControl}>
                             <InputLabel id="demo-simple-select-outlined-label">Status</InputLabel>
                             <Select
@@ -84,8 +64,8 @@ const SearchBarComponent = (props) => {
                                 label="Status"
                                 placeholder="status..."
                                 >
-                                <MenuItem value={1}>Active</MenuItem>
-                                <MenuItem value={0}>Inactive</MenuItem>
+                                <MenuItem value={true}>Active</MenuItem>
+                                <MenuItem value={false}>Inactive</MenuItem>
                             </Select>
                         </FormControl>
                     </Grid>
@@ -94,7 +74,7 @@ const SearchBarComponent = (props) => {
                         Search
                     </Button> */}
 
-                    <Grid item xl={3}>
+                    <Grid item xs={3}>
                         <Button
                             startIcon={<SearchIcon />}
                             variant="contained"

@@ -8,33 +8,6 @@ import SearchBarComponent from './SearchBarComponent';
 // import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
-// function handleClick(){
-//     console.log("HI");
-//     this.props.handleSearchName(this.name);
-// }
-
-// const SearchBarComponent = (props) => {
-
-//     return (
-//         <div>
-//             <Toolbar>
-//                 <label>Filter by</label>
-//                 <input type="text" id="name" name="name" placeholder="Name"/>
-//                 <select name="status" id="status">
-//                     <option value="active">Active</option>
-//                     <option value="inactive">Inactive</option>
-//                 </select>
-//                 <Button onClick={props.handleSearchName} variant="contained" color="primary">
-//                     Search
-//                 </Button>
-//             </Toolbar>
-//         </div>
-//     );
-// }
-
-
-
-
 class Main extends Component {
     constructor(props) {
       super(props);
@@ -68,7 +41,6 @@ class Main extends Component {
         const target = e.target
         const value = target.value;
         const name = target.name;
-        console.log(value);
         this.setState({[name]: value});
     }
 
@@ -81,29 +53,25 @@ class Main extends Component {
 
             // console.log(merchants);
             // console.log(this.state.status);
-            //get merchants
-            //change to lowercase 
-            //search their first name and last name 
-            //search if their status
-            //if name field is empty, then check status field, if both are empty then return merchants2
-            //if name is filled and if status is empty then filter then send 
-            //if status is filled and if name is empty then filter then send
             const merchants2 = merchants.filter((merchant) => {
                 // return this.state.name?this.state.status?merchant.firstname.toLowerCase().includes(this.state.name.toLowerCase())&&merchant.status.isTrue()||merchant.lastname.toLowerCase().includes(this.state.name.toLowerCase())&&merchant.status.isTrue():
+                //if name only available
                 if(this.state.name){
-                    return merchant.firstname.toLowerCase().includes(this.state.name.toLowerCase());
+                    return merchant.firstname.toLowerCase().includes(this.state.name.trim().toLowerCase()) || merchant.lastname.trim().toLowerCase().includes(this.state.name.toLowerCase());
                 }
-                else if(this.state.status&&this.state.name){
-                    return merchant.status === 1 && merchant.firstname.toLowerCase().includes(this.state.name.toLowerCase());
+                //if name and status available
+                else if((this.state.status||!this.state.status)&&this.state.name){
+                    if(this.state.status===true){
+                        return merchant.status === true && merchant.firstname.toLowerCase().includes(this.state.name.toLowerCase());
+                    }
+                    return merchant.status === false && merchant.firstname.toLowerCase().includes(this.state.name.toLowerCase());
                 }
-                else if(this.state.status&&!this.state.name){
-                    return merchant.status === 1 && merchant.firstname.toLowerCase().includes(this.state.name.toLowerCase());
-                }
-                else if(this.state.status){
-                    return merchant.status === 1;
-                }
-                else if(!this.state.status){
-                    return merchant.status === 0;
+                //if status only available
+                else if(this.state.status||!this.state.status){
+                    if(this.state.status===true){
+                        return merchant.status === true;
+                    }
+                    return merchant.status === false;
                 }
                 else{
                     return merchants;
@@ -114,31 +82,29 @@ class Main extends Component {
         }).catch((err)=>{
           console.log(err);
         })
+    }
 
-        //set merchants using filter method based on name input 
+    handleDeac = (id) => {
+        // console.log(this.state.merchants);
+        // console.log(id);    
+        //find the merchant using id and toggle that status
+        const index = this.state.merchants.findIndex((merchant) => merchant.id === id);
+        // console.log("HI");
+        const tempMerchants = [...this.state.merchants];
+        // tempMerchants[index].status = !tempMerchants[index].status;
+        tempMerchants[index].enabled = !tempMerchants[index].enabled;
+        // if(parseInt(tempMerchants[index].status) === true){
+        //     tempMerchants[index].status = 0;
+        // }
+        // else if(parseInt(tempMerchants[index].status) === false){
+        //     tempMerchants[index].status = 0;
+        // }
+
+        this.setState({merchants: [...tempMerchants]})
+        console.log(this.state.merchants);
     }
 
     render() {
-    
-        // const SearchBarComponent = (props) => {
-        //     // const inputName = useRef(null);
-        //     return (
-        //         <div>
-        //             <Toolbar>
-        //                 <label>Filter by</label>
-        //                 <input type="text" id="name" name="name" placeholder="Name"  onChange={this.handleChange}></input>
-        //                 <select name="status" id="status">
-        //                     <option value="active">Active</option>
-        //                     <option value="inactive">Inactive</option>
-        //                 </select>
-        //                 <button color="primary" >
-        //                     Search
-        //                 </button>
-        //             </Toolbar>
-        //         </div>
-        //     );
-        // }
-
         return (
             <div>
                 
@@ -158,7 +124,7 @@ class Main extends Component {
                     Merchants
                 </Typography> */}
 
-                <TableComponent merchants={this.state.merchants}/>
+                <TableComponent merchants={this.state.merchants} handleDeac={this.handleDeac}/>
             </div>
         );
     }
