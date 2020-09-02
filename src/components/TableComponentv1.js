@@ -176,44 +176,32 @@ const TableComponent = (props) => {
     // console.log(props.merchants);
 
 
-    const name = props.name;
-    const rows = [];
+    // const name = props.name;
+    // const rows = [];
 
 
-    (rowsPerPage > 0 ? props.merchants.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : props.merchants).map((merchant) => {
-        //fix pagination bug
-        //fix search bug
-        // console.log(merchant.firstname)
-        if (merchant.firstname.indexOf(name) === -1||merchant.lastname.indexOf(name) === -1) {
-            // console.log("HI");
-            return (
-                rows.push(
-                <TableRow key={merchant.id}>
-                    <TableCell align="left">{merchant.firstname}</TableCell>
-                    <TableCell align="left">{merchant.lastname}</TableCell>
-                    <TableCell align="left">{merchant.location}</TableCell>
-                    {/* <TableCell align="left"><DeacBtn handleDeac={props.handleDeac} id={merchant.id} status={merchant.status} enabled={merchant.enabled}/></TableCell> */}
-                    <TableCell align="left">{merchant.status ? <DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} /> : <ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} />}</TableCell>
-                    {/* <TableCell align="left">{merchant.status?<DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>:<ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>}</TableCell> */}
-                </TableRow>
-                )
-            )
-        }
+    // (rowsPerPage > 0 ? props.merchants.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : props.merchants).map((merchant) => {
+    //     //fix pagination bug
+    //     //fix search bug
+    //     if (merchant.name.indexOf(name) === -1) {
+    //         return null
+    //     }
 
-        return (
-            rows.push(
-            <TableRow key={merchant.id}>
-                <TableCell align="left">{merchant.firstname}</TableCell>
-                <TableCell align="left">{merchant.lastname}</TableCell>
-                <TableCell align="left">{merchant.location}</TableCell>
-                {/* <TableCell align="left"><DeacBtn handleDeac={props.handleDeac} id={merchant.id} status={merchant.status} enabled={merchant.enabled}/></TableCell> */}
-                <TableCell align="left">{props.status ? <DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} /> : <ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} />}</TableCell>
-                {/* <TableCell align="left">{merchant.status?<DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>:<ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>}</TableCell> */}
-            </TableRow>
-            )
-        )
+    //     return (
+    //         rows.push(
+    //         <TableRow key={merchant.id}>
+    //             <TableCell align="left">{merchant.firstname}</TableCell>
+    //             <TableCell align="left">{merchant.lastname}</TableCell>
+    //             <TableCell align="left">{merchant.location}</TableCell>
+    //             {/* <TableCell align="left"><DeacBtn handleDeac={props.handleDeac} id={merchant.id} status={merchant.status} enabled={merchant.enabled}/></TableCell> */}
+    //             <TableCell align="left">{props.status ? <DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} /> : <ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} />}</TableCell>
+    //             {/* <TableCell align="left">{merchant.status?<DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>:<ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>}</TableCell> */}
+    //         </TableRow>
+    //         )
 
-    })
+    //     )
+
+    // })
 
 
     return (
@@ -243,7 +231,7 @@ const TableComponent = (props) => {
                         <TableBody>
 
                             {/* {props.merchants.map((merchant) => ( */}
-                            {/* {(rowsPerPage > 0 ? props.merchants.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : props.merchants).map((merchant) => (
+                            {(rowsPerPage > 0 ? props.merchants.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : props.merchants).map((merchant) => (
                                 //fix pagination bug
                                 //fix search bug
 
@@ -251,11 +239,11 @@ const TableComponent = (props) => {
                                     <TableCell align="left">{merchant.firstname}</TableCell>
                                     <TableCell align="left">{merchant.lastname}</TableCell>
                                     <TableCell align="left">{merchant.location}</TableCell>
+                                    {/* <TableCell align="left"><DeacBtn handleDeac={props.handleDeac} id={merchant.id} status={merchant.status} enabled={merchant.enabled}/></TableCell> */}
                                     <TableCell align="left">{props.status ? <DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} /> : <ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} />}</TableCell>
+                                    {/* <TableCell align="left">{merchant.status?<DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>:<ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>}</TableCell> */}
                                 </TableRow>
-                            ))} */}
-
-                            {rows}
+                            ))}
                         </TableBody>
                     </Table>
                 </TableContainer>
