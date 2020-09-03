@@ -15,27 +15,28 @@ class SearchBarComponent extends React.Component{
     constructor(props) {
         super(props);
         this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+
+        this.input = React.createRef();
     }
     
     handleNameChange(e) {
         this.props.onNameChange(e.target.value);
     }
-    
-    // const useStyles = makeStyles((theme) => ({
-    //     button: {
-    //         margin: theme.spacing(1),
 
-    //     },
-    //     formControl: {
-    //         margin: theme.spacing(1),
-    //         minWidth: 120,
-    //     },
-    // }));
+    handleSubmit(e) {
+        // alert(this.input.current.value);
+        this.props.onNameChange(this.input.current.value);
+        this.props.handleClick();
+        e.preventDefault();
 
-    // const classes = useStyles();
+    }
+
     render(){
         return (
             <div>
+                <form onSubmit={this.handleSubmit}>
+
                 <Box display="flex" flexDirection="row-reverse" alignItems="center"mt={3} mb={3}>
                     <Grid container spacing={1} justify="center">
                         <Grid item xs={3}>
@@ -46,16 +47,18 @@ class SearchBarComponent extends React.Component{
                         <Grid item xs={3}>
                             <TextField
                                 type="text" 
-                                id="name" 
-                                label="Name"
+                                // id="name" 
+                                // label="Name"
                                 variant="outlined"
                                 name="name" 
                                 placeholder="Name" 
-                                value={this.props.name}
+                                ref={this.TextField}
+                                // value={this.props.name}
                                 // onChange={this.props.handleChange}
-                                onChange={this.handleNameChange}
-
+                                // onChange={this.handleNameChange}
+                                inputRef={this.input}
                             />
+                            {/* <input type="text" ref={this.input} /> */}
                         </Grid>
                         
                         {/* <select name="status" id="status" onChange={props.handleChange}>
@@ -89,12 +92,16 @@ class SearchBarComponent extends React.Component{
                                 variant="contained"
                                 size="large"
                                 color="primary"
-                                onClick={this.props.handleClick}
+                                type="submit" 
+                                value="Search"
+                                // onClick={this.props.handleClick}
                                 >Search
                             </Button>
+                            {/* <input color="blue" type="submit" value="Search" /> */}
                         </Grid>
                     </Grid>
                 </Box>
+                </form>
             </div>
         );
     }

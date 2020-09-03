@@ -46,6 +46,7 @@ class Main extends Component {
         this.setState({
             name: name
         });
+        
     }
 
     handleChange = (e) => {
@@ -53,24 +54,22 @@ class Main extends Component {
         const target = e.target
         const value = target.value;
         const name = target.name;
-        console.log(name);
-        console.log(value);
+        // console.log(name);
+        // console.log(value);
         this.setState({[name]: value});
 
-        // axios.get('./data/data.json')
-
-        // // axios.get('./data.json')
-        // .then((res)=>{
-        //     console.log(res.data.merchants);
-        //     const merchants3 = res.data.merchants;
-        //     const merchants4 = merchants3.filter((merchant) => {
-        //         return merchant.status === this.state.status;
-        //     })
-        //     this.setState({ merchants: merchants4 });
-        //     // console.log(merchants4);
-        // }).catch((err)=>{
-        //   console.log(err);
-        // })
+        axios.get('./data/data.json')
+        .then((res)=>{
+            console.log(res.data.merchants);
+            const merchants3 = res.data.merchants;
+            const merchants4 = merchants3.filter((merchant) => {
+                return merchant.status === this.state.status;
+            })
+            this.setState({ merchants: merchants4 });
+            // console.log(merchants4);
+        }).catch((err)=>{
+          console.log(err);
+        })
         
     }
 
@@ -103,7 +102,7 @@ class Main extends Component {
                 //     }
                 //     return merchant.status === false;
                 // }
-                return null;
+                return merchant.status === this.state.status;
             })
             // console.log(merchants.filter( (merchant) => {merchant.firstname.toLowerCase().includes(this.state.name.toLowerCase())}));
             this.setState({ merchants: merchants2 });
