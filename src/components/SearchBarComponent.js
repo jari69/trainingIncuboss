@@ -15,7 +15,6 @@ class SearchBarComponent extends React.Component{
     constructor(props) {
         super(props);
         this.handleNameChange = this.handleNameChange.bind(this);
-        // this.handleInStockChange = this.handleInStockChange.bind(this);
     }
     
     handleNameChange(e) {
@@ -90,7 +89,8 @@ class SearchBarComponent extends React.Component{
                                 variant="contained"
                                 size="large"
                                 color="primary"
-                                onClick={this.props.handleClick}>Search
+                                onClick={this.props.handleClick}
+                                >Search
                             </Button>
                         </Grid>
                     </Grid>

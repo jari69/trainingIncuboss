@@ -186,21 +186,24 @@ const TableComponent = (props) => {
         // console.log(merchant.firstname)
         if (merchant.firstname.indexOf(name) === -1||merchant.lastname.indexOf(name) === -1) {
             // console.log("HI");
+            console.log("HI1")
             return (
+                
                 rows.push(
                 <TableRow key={merchant.id}>
                     <TableCell align="left">{merchant.firstname}</TableCell>
                     <TableCell align="left">{merchant.lastname}</TableCell>
                     <TableCell align="left">{merchant.location}</TableCell>
                     {/* <TableCell align="left"><DeacBtn handleDeac={props.handleDeac} id={merchant.id} status={merchant.status} enabled={merchant.enabled}/></TableCell> */}
-                    <TableCell align="left">{merchant.status ? <DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} /> : <ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} />}</TableCell>
+                    <TableCell align="left">{merchant.status ?<DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>:<ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} />}</TableCell>
                     {/* <TableCell align="left">{merchant.status?<DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>:<ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>}</TableCell> */}
                 </TableRow>
                 )
             )
         }
-
+        console.log("HI2")
         return (
+            
             rows.push(
             <TableRow key={merchant.id}>
                 <TableCell align="left">{merchant.firstname}</TableCell>

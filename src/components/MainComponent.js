@@ -57,20 +57,20 @@ class Main extends Component {
         console.log(value);
         this.setState({[name]: value});
 
-        axios.get('./data/data.json')
+        // axios.get('./data/data.json')
 
-        // axios.get('./data.json')
-        .then((res)=>{
-            console.log(res.data.merchants);
-            const merchants3 = res.data.merchants;
-            const merchants4 = merchants3.filter((merchant) => {
-                return merchant.status === this.state.status;
-            })
-            this.setState({ merchants: merchants4 });
-            // console.log(merchants4);
-        }).catch((err)=>{
-          console.log(err);
-        })
+        // // axios.get('./data.json')
+        // .then((res)=>{
+        //     console.log(res.data.merchants);
+        //     const merchants3 = res.data.merchants;
+        //     const merchants4 = merchants3.filter((merchant) => {
+        //         return merchant.status === this.state.status;
+        //     })
+        //     this.setState({ merchants: merchants4 });
+        //     // console.log(merchants4);
+        // }).catch((err)=>{
+        //   console.log(err);
+        // })
         
     }
 
@@ -89,13 +89,13 @@ class Main extends Component {
                 if(this.state.name){
                     return merchant.firstname.toLowerCase().includes(this.state.name.trim().toLowerCase()) || merchant.lastname.trim().toLowerCase().includes(this.state.name.toLowerCase());
                 }
-                //if name and status available
-                else if((this.state.status||!this.state.status)&&this.state.name){
-                    if(this.state.status===true){
-                        return merchant.status === true && merchant.firstname.toLowerCase().includes(this.state.name.toLowerCase());
-                    }
-                    return merchant.status === false && merchant.firstname.toLowerCase().includes(this.state.name.toLowerCase());
-                }
+                //if name and status of merchant is available
+                // else if((this.state.status||!this.state.status)&&this.state.name){
+                //     if(this.state.status===true){
+                //         return merchant.status === true && merchant.firstname.toLowerCase().includes(this.state.name.toLowerCase());
+                //     }
+                //     return merchant.status === false && merchant.firstname.toLowerCase().includes(this.state.name.toLowerCase());
+                // }
                 // //if status only available
                 // else if(this.state.status||!this.state.status){
                 //     if(this.state.status===true){
