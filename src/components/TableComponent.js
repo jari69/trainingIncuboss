@@ -46,109 +46,6 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-
-// const useStyles = makeStyles({
-//     table: {
-//       minWidth: 650,
-//     },
-//   });
-
-// const ReacBtn = () => {
-//     return(
-//         <div>
-//             <Button
-//                 variant="contained"
-//                 // color="green"
-//                 size="large"
-//                 startIcon={<CheckIcon />}>Reactivate
-//             </Button>
-//         </div>
-//     );
-// }
-
-// const DeacBtn = (props) => {
-
-//     //if active ang user then render deac btn else render reac btn
-//     if(props.status===true){
-//         //if disabled ang user then render disabled deac btn
-//         if(props.enabled===true){
-//             return(
-//                 <div>
-//                     <Button                
-//                         variant="contained"
-//                         style={{
-//                             backgroundColor: "#ff0000",
-//                             color:"#FFFFFF"
-//                         }}
-//                         size="large"
-//                         onClick={()=>{props.handleDeac(props.id)}}
-//                         startIcon={<ClearIcon />} 
-//                         disabled={!props.status}>Deactivate
-//                     </Button>
-//                 </div>
-//             );
-//         }
-
-//         return(
-//             <Button                
-//                 variant="contained"
-//                 size="large"
-//                 // onClick={()=>{props.handleDeac(props.id)}}
-//                 startIcon={<ClearIcon />} disabled>Deactivate
-//             </Button>
-//         );
-
-//     }
-//     else if(props.status===false){
-//         if(props.enabled===false){
-//             return(
-//                 <div>
-//                     <Button
-//                         variant="contained"
-//                         size="large"
-//                         startIcon={<CheckIcon />}
-//                         disabled>
-//                             Reactivate
-//                     </Button>
-//                 </div>
-//             );
-//         }
-//         return(
-//             <div>
-//                 <Button
-//                     variant="contained"
-//                     style={{
-//                         backgroundColor: "#008000",
-//                         color:"#FFFFFF"
-//                     }}
-//                     size="large"
-//                     startIcon={<CheckIcon />}
-//                     onClick={()=>{props.handleDeac(props.id)}}
-//                     >
-//                         Reactivate
-//                 </Button>
-//             </div>
-//         );
-//     }
-
-// }
-
-// const DeacBtn2 = (props) => {
-
-//     return(
-//         <Button                
-//             variant="contained"
-//             size="small"
-//             // onClick={()=>{props.handleDeac(props.id)}}
-//             startIcon={<ClearIcon />} disabled>Deactivate
-//         </Button>
-//     );
-
-// }
-
-
-
-
 const TableComponent = (props) => {
 
     const [page, setPage] = React.useState(0);
@@ -173,52 +70,76 @@ const TableComponent = (props) => {
     };
 
     const classes = useStyles();
-    // console.log(props.merchants);
+    // console.log(props.merchants.merchants);
 
 
-    const name = props.name;
-    const rows = [];
+    // const name = props.name;
+    // const filteredList = props.list;
+    // const rows = [];
+    // // const activeMerchants = [];
+    // var merchantsToBeDisplayed = [];
 
-
-    (rowsPerPage > 0 ? props.merchants.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : props.merchants).map((merchant) => {
-        //fix pagination bug
-        //fix search bug
-        // console.log(merchant.firstname)
-        if (merchant.firstname.indexOf(name) === -1||merchant.lastname.indexOf(name) === -1) {
-            // console.log("HI");
-            console.log("HI1")
-            return (
-                
-                rows.push(
-                <TableRow key={merchant.id}>
-                    <TableCell align="left">{merchant.firstname}</TableCell>
-                    <TableCell align="left">{merchant.lastname}</TableCell>
-                    <TableCell align="left">{merchant.location}</TableCell>
-                    {/* <TableCell align="left"><DeacBtn handleDeac={props.handleDeac} id={merchant.id} status={merchant.status} enabled={merchant.enabled}/></TableCell> */}
-                    <TableCell align="left">{merchant.status ?<DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>:<ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} />}</TableCell>
-                    {/* <TableCell align="left">{merchant.status?<DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>:<ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>}</TableCell> */}
-                </TableRow>
-                )
-            )
-        }
-        console.log("HI2")
-        return (
+    // if(props.status===true){
+    //     //filter the merchants who are active in the props and save to activeMerchants
+    //     console.log("active");
+    //     merchantsToBeDisplayed = props.merchants.merchants.filter((merchant) => {
             
-            rows.push(
-            <TableRow key={merchant.id}>
-                <TableCell align="left">{merchant.firstname}</TableCell>
-                <TableCell align="left">{merchant.lastname}</TableCell>
-                <TableCell align="left">{merchant.location}</TableCell>
-                {/* <TableCell align="left"><DeacBtn handleDeac={props.handleDeac} id={merchant.id} status={merchant.status} enabled={merchant.enabled}/></TableCell> */}
-                <TableCell align="left">{props.status ? <DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} /> : <ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} />}</TableCell>
-                {/* <TableCell align="left">{merchant.status?<DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>:<ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>}</TableCell> */}
-            </TableRow>
-            )
-        )
+    //         return merchant.status === true;
+    //     })
+    // }
+    // else{
+    //     //filter the merchants who are inactive in the props and save to activeMerchants
+    //     console.log("inactive");
+    //     merchantsToBeDisplayed = props.merchants.merchants.filter((merchant) => {
+    //         return merchant.status === false;
+    //     })
+    // }
 
-    })
+    // if(filteredList.length>0){
+    //     console.log("filtered list");
+    //     merchantsToBeDisplayed = filteredList;
+    // }
 
+    // console.log(merchantsToBeDisplayed);
+    // (rowsPerPage > 0 ? merchantsToBeDisplayed.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : props.merchants.merchants).map((merchant) => {
+    //     //fix pagination bug
+    //     //fix search bug
+    //     // console.log(merchant.firstname)
+    //     if (merchant.firstname.indexOf(name) === -1||merchant.lastname.indexOf(name) === -1) {
+    //         // console.log("HI");
+    //         // console.log("HI1")
+    //         return (
+                
+    //             rows.push(
+    //             <TableRow key={merchant.id}>
+    //                 <TableCell align="left">{merchant.firstname}</TableCell>
+    //                 <TableCell align="left">{merchant.lastname}</TableCell>
+    //                 <TableCell align="left">{merchant.location}</TableCell>
+    //                 {/* <TableCell align="left"><DeacBtn handleDeac={props.handleDeac} id={merchant.id} status={merchant.status} enabled={merchant.enabled}/></TableCell> */}
+    //                 <TableCell align="left">{merchant.status ?<DeacBtnComponent status = {merchant.status} key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>:<ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} />}</TableCell>
+    //                 {/* <TableCell align="left">{merchant.status?<DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>:<ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>}</TableCell> */}
+    //             </TableRow>
+    //             )
+    //         )
+    //     }
+    //     // console.log("HI2")
+    //     return (
+            
+    //         rows.push(
+    //         <TableRow key={merchant.id}>
+    //             <TableCell align="left">{merchant.firstname}</TableCell>
+    //             <TableCell align="left">{merchant.lastname}</TableCell>
+    //             <TableCell align="left">{merchant.location}</TableCell>
+    //             {/* <TableCell align="left"><DeacBtn handleDeac={props.handleDeac} id={merchant.id} status={merchant.status} enabled={merchant.enabled}/></TableCell> */}
+    //             <TableCell align="left">{props.status ? <DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} /> : <ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} />}</TableCell>
+    //             {/* <TableCell align="left">{merchant.status?<DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>:<ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id}/>}</TableCell> */}
+    //         </TableRow>
+    //         )
+    //     )
 
+    // })
+
+    // console.log("hi");
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
@@ -246,19 +167,17 @@ const TableComponent = (props) => {
                         <TableBody>
 
                             {/* {props.merchants.map((merchant) => ( */}
-                            {/* {(rowsPerPage > 0 ? props.merchants.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : props.merchants).map((merchant) => (
-                                //fix pagination bug
-                                //fix search bug
+                            {(rowsPerPage > 0 ? props.merchants.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : props.merchants).map((merchant) => (
 
                                 <TableRow key={merchant.id}>
                                     <TableCell align="left">{merchant.firstname}</TableCell>
                                     <TableCell align="left">{merchant.lastname}</TableCell>
                                     <TableCell align="left">{merchant.location}</TableCell>
-                                    <TableCell align="left">{props.status ? <DeacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} /> : <ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} />}</TableCell>
+                                    <TableCell align="left">{merchant.status ? <DeacBtnComponent state = {props.status} status= {merchant.status} key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} /> : <ReacBtnComponent key={merchant.id} handleDeac={props.handleDeac} id={merchant.id} />}</TableCell>
                                 </TableRow>
-                            ))} */}
+                            ))}
 
-                            {rows}
+                            {/* {rows} */}
                         </TableBody>
                     </Table>
                 </TableContainer>
@@ -266,6 +185,7 @@ const TableComponent = (props) => {
                     <TablePagination
                         rowsPerPageOptions={[1, 2, 3]}
                         component="div"
+                        // count={props.merchants.merchants.length}
                         count={props.merchants.length}
                         page={page}
                         rowsPerPage={rowsPerPage}

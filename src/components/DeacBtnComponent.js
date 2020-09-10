@@ -7,16 +7,27 @@ export class DeacBtnComponent extends Component {
         super(props)
 
         this.state = {
-            ability: false,
-            color: "#FFFFFF",
-            backgroundColor: "#ff0000"
+            ability: true
         }
     }
     
+    // shouldComponentUpdate(){
+    //     return true
+    // }
+
+    // componentDidUpdate(prevProps){
+    //     if(this.props.status !== prevProps.status){
+    //         // this.state.ability = true;
+    //         // console.log("from componentDidUpdate")
+    //         this.setState({ability: !this.state.ability});
+    //     }
+    // }
+
     handleClick=()=>{
-        // this.setState({backgroundColor: "#505050"});
         this.setState({ability: !this.state.ability});
         this.props.handleDeac(this.props.id);
+ 
+        // console.log(this.state.ability);
     }
 
     render() {
@@ -24,17 +35,15 @@ export class DeacBtnComponent extends Component {
             <div>
                 <Button 
                     variant="contained"
-                    // style={{
-                    //     backgroundColor: "#ff0000",
-                    //     color:"#FFFFFF"
-                    // }}
                     color="secondary"
                     size="large"
                     startIcon={<ClearIcon />} 
-                    disabled={this.state.ability} 
-                    onClick={()=>this.handleClick()}>Deactivate</Button>
+                    // disabled={!this.state.ability} 
+                    onClick={()=>{this.handleClick()}}
+                    >Deactivate</Button>
             </div>
         )
+
     }
 }
 

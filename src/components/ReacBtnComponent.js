@@ -29,7 +29,8 @@ export class ReacBtnComponent extends Component {
                     size="large"
                     startIcon={<CheckIcon />}
                     disabled={this.state.ability}
-                    onClick={()=>this.handleClick()}>Reactivate</Button>
+                    onClick={()=>this.handleClick()}
+                    >Reactivate</Button>
             </div>
         )
     }
