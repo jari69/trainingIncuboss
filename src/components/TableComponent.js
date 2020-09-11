@@ -10,11 +10,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import TablePagination from '@material-ui/core/TablePagination';
-// import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import AppBar from '@material-ui/core/AppBar';
-// import ClearIcon from '@material-ui/icons/Clear';
-// import CheckIcon from '@material-ui/icons/Check';
 import { DeacBtnComponent } from "./DeacBtnComponent";
 import { ReacBtnComponent } from "./ReacBtnComponent";
 
@@ -139,7 +136,7 @@ const TableComponent = (props) => {
 
     // })
 
-    // console.log("hi");
+    console.log(props.merchants);
     return (
         <div className={classes.root}>
             <Paper className={classes.paper}>
@@ -167,7 +164,7 @@ const TableComponent = (props) => {
                         <TableBody>
 
                             {/* {props.merchants.map((merchant) => ( */}
-                            {(rowsPerPage > 0 ? props.merchants.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : props.merchants).map((merchant) => (
+                            {(rowsPerPage > 0 ? props.merchants.merchants.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage) : props.merchants.merchants).map((merchant) => (
 
                                 <TableRow key={merchant.id}>
                                     <TableCell align="left">{merchant.firstname}</TableCell>
@@ -185,8 +182,7 @@ const TableComponent = (props) => {
                     <TablePagination
                         rowsPerPageOptions={[1, 2, 3]}
                         component="div"
-                        // count={props.merchants.merchants.length}
-                        count={props.merchants.length}
+                        count={props.merchants.merchants.length}
                         page={page}
                         rowsPerPage={rowsPerPage}
                         onChangePage={handleChangePage}

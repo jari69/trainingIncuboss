@@ -11,6 +11,16 @@ test('should set the status to true', () => {
     expect(state).toBeTruthy();
 })
 
+//original state
+let state1 = beforeEach(() => {
+    state1 = Status({},{type:ActionTypes.SET_STATUS,payload:true});
+})
+
+test('should set the status to true', () => {
+
+    expect(state1.status).toBeTruthy();
+})
+
 //false or inactive is passed
 var action = {
     type: ActionTypes.EDIT_STATUS,

@@ -22,6 +22,15 @@ test('initial state should be undefined', () => {
     expect(state).toEqual({});
 })
 
+let state1 = beforeEach(() => {
+    state1 = Merchants({},{type:ActionTypes.SET_MERCHANTS,payload:MERCHANTS});
+})
+
+test('should expect all the merchants to be set', () => {
+
+    expect(state1.merchants).toEqual(MERCHANTS);
+})
+
 var action = {
     type: ActionTypes.EDIT_MERCHANTS,
     payload: MERCHANTS,

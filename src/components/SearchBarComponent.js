@@ -47,25 +47,26 @@ class SearchBarComponent extends React.Component{
             <div>
                 {/* <form onSubmit={this.handleSubmit}> */}
                     <Box display="flex" flexDirection="row-reverse" alignItems="center"mt={3} mb={3}>
-                        <Grid container spacing={1} justify="center">
-                            <Grid item xs={3}>
+                        <Grid container spacing={0} justify="center">
+                            <Grid item xs={3} >
                                 <InputLabel>Filter by</InputLabel>
                             </Grid>
                             
                             <Grid item xs={3}>
                                 <TextField
+                                    id="name" 
+                                    label="Name"
                                     type="text" 
                                     variant="outlined"
                                     name="name" 
                                     placeholder="Name" 
-                                    ref={this.TextField}
-                                    // value={this.props.name}
+                                    // ref={this.TextField}
+                                    value={this.props.filter}
                                     onChange={this.props.handleChange}
                                     // onChange={this.props.onNameChange}
                                     // onChange={this.handleNameChange}
                                     inputRef={this.input}
                                 />
-                                {/* <input type="text" ref={this.input} /> */}
                             </Grid>
         
                             <Grid item xs={3}>

@@ -1,6 +1,6 @@
 export const SET_MERCHANTS = 'SET_MERCHANTS';
 export const EDIT_MERCHANTS = 'EDIT_MERCHANTS';
-export const FILTER_MERCHANTS = 'FILTER_MERCHANTS';
+export const SET_MERCHANT = 'SET_MERCHANT';
 
 export const SET_STATUS = 'SET_STATUS';
 export const EDIT_STATUS = 'EDIT_STATUS';

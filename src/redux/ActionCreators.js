@@ -1,6 +1,6 @@
 import * as ActionTypes from './ActionTypes';
-import { MERCHANTS } from '../shared/merchants';
-// import axios from 'axios';
+// import { MERCHANTS } from '../shared/merchants';
+import axios from 'axios';
 
 // export const setMerchants = (status,name) => ({
 //     type: ActionTypes.SET_MERCHANTS,
@@ -23,7 +23,7 @@ import { MERCHANTS } from '../shared/merchants';
 //     console.log(err);
 // })
 
-export const fetchMerchants = () => (dispatch) => {
+export const fetchMerchants = () => async (dispatch) => {
 
     // console.log(merchantsArray);
 
@@ -40,7 +40,14 @@ export const fetchMerchants = () => (dispatch) => {
     //         console.log(err);
     //     })
 
-    dispatch(setMerchants(MERCHANTS));
+    const merchants =  await axios.get('./data/data.json').then(function (response) {
+        // console.log(response);
+        return response;
+    });
+    
+    dispatch(setMerchants((await merchants).data.merchants));
+
+    // dispatch(setMerchants(MERCHANTS));
 
 }
 
@@ -51,23 +58,17 @@ export const fetchState = () => (dispatch) => {
 }
 
 export const fetchName = () => (dispatch) => {
-    // dispatch(dishesLoading(true));
-    // console.log(merchants);
     dispatch(setName());
 }
-
-// export const dishesLoading = () => ({
-//     type: ActionTypes.DISHES_LOADING
-// });
-
-// export const dishesFailed = (errmess) => ({
-//     type: ActionTypes.DISHES_FAILED,
-//     payload: errmess
-// });
 
 export const setMerchants = (merchants) => ({
     type: ActionTypes.SET_MERCHANTS,
     payload: merchants
+});
+
+export const setMerchant = (searchNames) => ({
+    type: ActionTypes.SET_MERCHANT,
+    payload: searchNames
 });
 
 export const editMerchants = (id,merchants) => ({
