@@ -37,6 +37,7 @@ class Main extends Component {
     //   this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleNameChange = this.handleNameChange.bind(this);
+        this.handleStatus = this.handleStatus.bind(this);
     }
 
     componentDidMount(){
@@ -52,9 +53,12 @@ class Main extends Component {
                 // console.log(response);
                 return response;
             });
+            
             this.props.setMerchants((await merchants).data.merchants );
             var searchNames = this.props.merchants.merchants.filter((merchant) => {
-                return merchant.firstname.toLowerCase().includes(this.state.filter.trim().toLowerCase()) || merchant.lastname.toLowerCase().includes(this.state.filter.trim().toLowerCase());
+                // return merchant.firstname.toLowerCase().includes(this.state.filter.trim().toLowerCase()) || merchant.lastname.toLowerCase().includes(this.state.filter.trim().toLowerCase());
+                return merchant.firstname.toLowerCase().includes(this.props.name.name.trim().toLowerCase()) || merchant.lastname.toLowerCase().includes(this.props.name.name.trim().toLowerCase());
+
             })
             // console.log("set merchant")
             this.props.setMerchant(searchNames);
@@ -112,13 +116,12 @@ class Main extends Component {
     //     }
     // }
 
-    handleNameChange(name) {
-        //change to editName
-        // this.setState({
-        //     name: name
-        // });
-        this.props.editName(name);
-        // console.log("from handle name change");
+    handleNameChange = (e) => {
+        e.preventDefault();
+        const target = e.target
+        const value = target.value;
+        this.props.editName(value);
+        console.log("from handle name change");
     }
 
     handleChange = (e) => {
@@ -165,7 +168,7 @@ class Main extends Component {
         const Table = () => {
             return(
                 <TableComponent 
-                    name={this.props.name} 
+                    // name={this.props.name} 
                     merchants={this.props.merchants} 
                     // merchants={this.state.list} 
                     status={this.props.status.status} 
@@ -180,7 +183,8 @@ class Main extends Component {
                 <Box ml={60}>
                     <SearchBarComponent 
                         status={this.props.status.status}
-                        name={this.props.filter}
+                        // name={this.props.filter}
+                        name={this.props.name.name}
                         handleStatus={this.handleStatus}
                         onNameChange={this.handleNameChange}
                         merchants={this.props.merchants}

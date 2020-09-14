@@ -2,43 +2,7 @@ import * as ActionTypes from './ActionTypes';
 // import { MERCHANTS } from '../shared/merchants';
 import axios from 'axios';
 
-// export const setMerchants = (status,name) => ({
-//     type: ActionTypes.SET_MERCHANTS,
-//     payload: {
-//         status: status,
-//         name: name
-//     }
-// });
-
-// const merchantsArray=[];
-
-
-// axios.get('./data/data.json')
-// .then((res)=>{
-//     const merchants = res.data.merchants;
-//     // Array.prototype.push.apply(merchantsArray, merchants);
-//     //FIX THIS!
-//     merchantsArray.push(...merchants);
-// }).catch((err)=>{
-//     console.log(err);
-// })
-
 export const fetchMerchants = () => async (dispatch) => {
-
-    // console.log(merchantsArray);
-
-    // axios.get('./data/data.json')
-    //     .then((res)=>{
-    //         const merchants = res.data.merchants;
-    //         // Array.prototype.push.apply(merchantsArray, merchants);
-    //         //FIX THIS!
-    //         // merchantsArray.push(...merchants);
-    //         console.log(merchants);
-    //         dispatch(setMerchants(merchants));
-
-    //     }).catch((err)=>{
-    //         console.log(err);
-    //     })
 
     const merchants =  await axios.get('./data/data.json').then(function (response) {
         // console.log(response);
@@ -54,7 +18,7 @@ export const fetchMerchants = () => async (dispatch) => {
 export const fetchState = () => (dispatch) => {
     // dispatch(dishesLoading(true));
     // console.log(merchants);
-    dispatch(setStatus());
+    dispatch(setStatus(true));
 }
 
 export const fetchName = () => (dispatch) => {

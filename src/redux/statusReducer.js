@@ -1,7 +1,6 @@
 import * as ActionTypes from './ActionTypes';
 
-// export const Status = (state= {status: true}, action) => {
-export const Status = (state= {}, action) => {
+export const Status = (state= {status:true}, action) => {
 
     switch (action.type) {
         case ActionTypes.SET_STATUS:

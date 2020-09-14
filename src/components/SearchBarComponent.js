@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-// import { makeStyles } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from "@material-ui/core/FormControl";
@@ -17,7 +16,7 @@ class SearchBarComponent extends React.Component{
         // this.handleNameChange = this.handleNameChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
 
-        this.input = React.createRef();
+        // this.input = React.createRef();
     }
     
     // handleNameChange(e) {
@@ -61,11 +60,12 @@ class SearchBarComponent extends React.Component{
                                     name="name" 
                                     placeholder="Name" 
                                     // ref={this.TextField}
-                                    value={this.props.filter}
-                                    onChange={this.props.handleChange}
-                                    // onChange={this.props.onNameChange}
+                                    // value={this.props.filter}
+                                    value={this.props.name}
+                                    // onChange={this.props.handleChange}
+                                    onChange={this.props.onNameChange}
                                     // onChange={this.handleNameChange}
-                                    inputRef={this.input}
+                                    // inputRef={this.input}
                                 />
                             </Grid>
         

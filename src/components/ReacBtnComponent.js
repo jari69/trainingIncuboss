@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 
+const styles = theme => ({
+    disabledButton: {
+      backgroundColor: theme.palette.primary || 'red'
+    }
+  });
+  
 export class ReacBtnComponent extends Component {
     constructor(props){
         super(props)
@@ -10,7 +16,7 @@ export class ReacBtnComponent extends Component {
             ability: false
         }
     }
-    
+
     handleClick=()=>{
         this.setState({ability: !this.state.ability});
         this.props.handleDeac(this.props.id);
@@ -21,10 +27,6 @@ export class ReacBtnComponent extends Component {
             <div>
                 <Button 
                     variant="contained"
-                    // style={{
-                    //     backgroundColor: "#008000",
-                    //     color:"#FFFFFF"
-                    // }}
                     color="primary"
                     size="large"
                     startIcon={<CheckIcon />}

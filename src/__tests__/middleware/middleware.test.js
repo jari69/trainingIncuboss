@@ -1,23 +1,24 @@
-// import thunk from 'redux-thunk';
-// import { fetchMerchants, fetchState, fetchName } from '../../redux/ActionCreators';
-// import configureMockStore from 'redux-mock-store';
-// import nock from 'nock';
-// import * as ActionTypes from '../../redux/ActionCreators';
-// import { MERCHANTS } from '../../shared/merchants';
+import thunk from 'redux-thunk';
+import { fetchMerchants, fetchState, fetchName } from '../../redux/ActionCreators';
+import configureMockStore from 'redux-mock-store';
+import nock from 'nock';
+import * as ActionCreators from '../../redux/ActionCreators';
+import * as ActionTypes from '../../redux/ActionTypes';
+import { MERCHANTS } from '../../shared/merchants';
 
-// import mockAxios from "axios";
-// import configureMockStore from "redux-mock-store";
-// import thunk from "redux-thunk";
-// import promiseMiddleware from "redux-promise-middleware";
-// import { getUsers } from "./users";
+const middlewares = [thunk]
+const mockStore = configureMockStore(middlewares)
 
-// const mockStore = configureMockStore([thunk, promiseMiddleware()]);
+describe('async actions', () => {
 
-// describe("User Actions", () => {
-//   let store;
+  it('should dispatch actions of ConstantA and ConstantB', () => {
+    const expectedActions = [
+      {type: ActionTypes.SET_MERCHANTS, payload: {}}
+    ]
 
-//   beforeEach(() => {
-//     store = mockStore({
-//       users: {}
-//     });
-//   });
+    const store = mockStore({ })
+    store.dispatch(fetchMerchants())
+
+    expect(store.getActions()).toEqual(expectedActions)
+  })
+})
